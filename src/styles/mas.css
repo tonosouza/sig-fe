@@ -1,0 +1,31 @@
+/* Estilos de la landing publica (/). Tailwind ya se inyecta una sola vez
+   desde styles/index.css, asi que este archivo NO debe volver a declarar
+   @tailwind: eso duplicaria el preflight y pisaria los estilos globales. */
+
+:root {
+  --primary: #0072F5;     /* Azul principal */
+  --secondary: #25D083;   /* Verde (acción / botones) */
+  --dark: #121A23;        /* Fondo oscuro */
+  --light: #F0F2F5;       /* Fondo claro */
+  --text: #FFFFFF;
+}
+
+/* La landing es clara y usa fuentes propias: hay que neutralizar las reglas
+   globales de index.css (body oscuro, headings blancos, h1-h4 en Sora),
+   que si no dejan los titulos en blanco sobre fondo claro. */
+.mas-landing {
+  @apply font-sans text-gray-800;
+  background-color: #ffffff;
+}
+
+.mas-landing h1,
+.mas-landing h2,
+.mas-landing h3,
+.mas-landing h4 {
+  @apply font-sans text-gray-800;
+}
+
+/* Los titulos sobre fondo oscuro (hero, CTA, navbar, footer) si van blancos. */
+.mas-landing .mas-invert {
+  @apply font-sans text-white;
+}
