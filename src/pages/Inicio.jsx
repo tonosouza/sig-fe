@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import logoMas from '../assets/logo.png';
 import p1 from '../assets/p1.png';
 import p2 from '../assets/p2.png';
@@ -55,9 +54,9 @@ function Navbar() {
               {l.label}
             </a>
           ))}
-          <Link to="/dashboard" className="transition hover:text-green-400">
-            Sistemas
-          </Link>
+          <a href="#contacto" className="transition hover:text-green-400">
+            Contacto
+          </a>
         </div>
 
         {/* CTA */}
@@ -83,37 +82,29 @@ function Navbar() {
       </div>
 
       {/* Mobile menu */}
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0, y: -100 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -100 }}
-            transition={{ duration: 0.3 }}
-            className="absolute inset-x-0 top-20 z-20 h-screen"
-          >
-            <div className="m-4 flex flex-col gap-4 rounded-lg bg-black py-4 text-white shadow-lg">
-              {links.map((l) => (
-                <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="px-6">
-                  {l.label}
-                </a>
-              ))}
-              <Link to="/dashboard" onClick={() => setOpen(false)} className="px-6">
-                Sistemas
-              </Link>
-              <a
-                target="_blank"
-                rel="noreferrer"
-                href={WHATSAPP}
-                onClick={() => setOpen(false)}
-                className="mx-6 mt-2 rounded-xl bg-green-500 px-4 py-2 text-center font-medium"
-              >
-                WhatsApp
+      {open && (
+        <div className="absolute inset-x-0 top-20 z-20">
+          <div className="m-4 flex flex-col gap-4 rounded-lg bg-black py-4 text-white shadow-lg">
+            {links.map((l) => (
+              <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="px-6">
+                {l.label}
               </a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            ))}
+            <a href="#contacto" onClick={() => setOpen(false)} className="px-6">
+              Contacto
+            </a>
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href={WHATSAPP}
+              onClick={() => setOpen(false)}
+              className="mx-6 mt-2 rounded-xl bg-green-500 px-4 py-2 text-center font-medium"
+            >
+              WhatsApp
+            </a>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }
